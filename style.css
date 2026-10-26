@@ -1,0 +1,564 @@
+/* Сброс базовых отступов */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Измененный фон всей страницы на темно-серый */
+body {
+    background-color: #121212; 
+    height: 200vh;
+}
+
+/* Темная полупрозрачная шапка с эффектом матового стекла */
+.site-header {
+    background-color: rgba(30, 30, 30, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.3); /* Тень стала чуть темнее */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.header-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 80px;
+}
+
+/* Логотип теперь белого цвета */
+.logo {
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+    color: #ffffff; 
+    letter-spacing: 1px;
+}
+
+/* Новый акцентный цвет: Изумрудно-зеленый */
+.logo .accent {
+    color: #10b981; 
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+/* Ссылки стали светло-серыми */
+.nav-links li a {
+    text-decoration: none;
+    color: #a3a3a3; 
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: capitalize;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* При наведении и активной ссылке текст становится белым */
+.nav-links li a:hover,
+.nav-links li a.active {
+    color: #ffffff;
+}
+
+/* Линия при наведении (теперь изумрудная) */
+.nav-links li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background-color: #10b981;
+    transition: width 0.3s ease;
+}
+
+.nav-links li a:hover::after,
+.nav-links li a.active::after {
+    width: 100%;
+}
+
+/* --- Контурная кнопка Download в новых цветах --- */
+.nav-links li a.btn-download {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background-color: transparent;
+    color: #10b981; /* Изумрудный текст и контур */
+    padding: 8px 22px;
+    border: 2px solid #10b981;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.nav-links li a.btn-download::after {
+    display: none; 
+}
+
+/* При наведении кнопка полностью заливается зеленым, текст становится черным (для контраста) */
+.nav-links li a.btn-download:hover {
+    background-color: #10b981;
+    color: #000000; 
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3); /* Изумрудное свечение */
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .header-inner {
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        padding: 15px 0;
+        gap: 15px;
+    }
+    
+    .nav-links {
+        gap: 20px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+}
+
+/* --- Стили для главного экрана (Hero Section) --- */
+.hero-section {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    min-height: calc(100vh - 80px); /* Занимает всю высоту экрана минус высота шапки */
+    padding: 40px 20px;
+    gap: 40px;
+}
+
+/* Левая часть с текстом */
+.hero-text {
+    flex: 1;
+    max-width: 500px;
+}
+
+.hero-text h1 {
+    font-size: 3rem;
+    color: #ffffff;
+    line-height: 1.2;
+    margin-bottom: 20px;
+}
+
+.hero-text .accent-text {
+    color: #10b981; /* Изумрудный акцент */
+}
+
+.hero-text p {
+    color: #a3a3a3;
+    font-size: 1.1rem;
+    line-height: 1.6;
+    margin-bottom: 30px;
+}
+
+/* Кнопка под текстом */
+.btn-primary {
+    display: inline-block;
+    background-color: #10b981;
+    color: #000000;
+    padding: 12px 30px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0ea5e9; /* Слегка меняет цвет при наведении */
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
+}
+
+/* Правая часть с картинками */
+.hero-images {
+    flex: 1;
+    position: relative;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Общие стили для фото */
+.photo {
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+/* Первая фотография (на заднем плане, чуть меньше) */
+.photo-1 {
+    width: 250px;
+    height: 350px;
+    position: absolute;
+    left: 10%;
+    top: 0;
+    z-index: 1;
+    opacity: 0.8;
+    transform: rotate(-5deg);
+}
+
+/* Вторая фотография (на переднем плане) */
+.photo-2 {
+    width: 280px;
+    height: 380px;
+    position: absolute;
+    right: 10%;
+    bottom: -20px;
+    z-index: 2;
+    border: 4px solid #1e1e1e; /* Рамка в цвет фона, чтобы отделить от первого фото */
+}
+
+/* Эффект при наведении на блок с фото */
+.hero-images:hover .photo-1 {
+    transform: rotate(0deg) scale(1.05) translateX(-10px);
+    opacity: 1;
+}
+
+.hero-images:hover .photo-2 {
+    transform: scale(1.05) translateX(10px);
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    .hero-section {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .hero-text {
+        max-width: 100%;
+    }
+
+    .hero-images {
+        width: 100%;
+        height: 350px;
+        margin-top: 20px;
+    }
+
+    .photo-1 {
+        left: 0;
+        width: 200px;
+        height: 280px;
+    }
+
+    .photo-2 {
+        right: 0;
+        width: 220px;
+        height: 300px;
+    }
+}
+
+/* --- Главный экран (Hero Section) --- */
+.hero {
+    /* Занимает минимум высоту экрана за вычетом шапки (80px) */
+    min-height: calc(100vh - 80px); 
+    display: flex;
+    align-items: center;
+    padding: 60px 0;
+}
+
+.hero-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+}
+
+/* Стилизация текста */
+.hero-content {
+    flex: 1;
+    max-width: 550px;
+}
+
+.slogan {
+    font-size: 3.5rem;
+    font-weight: 800;
+    color: #ffffff;
+    line-height: 1.1;
+    margin-bottom: 24px;
+}
+
+.slogan .accent {
+    color: #10b981; /* Изумрудный акцент из шапки */
+}
+
+.description {
+    font-size: 1.125rem;
+    color: #a3a3a3;
+    line-height: 1.6;
+    margin-bottom: 40px;
+}
+
+/* Главная кнопка действия */
+.btn-primary {
+    display: inline-block;
+    background-color: #10b981;
+    color: #000000;
+    font-size: 1.1rem;
+    font-weight: 600;
+    padding: 14px 32px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+    background-color: #0ea5e9; /* Смена цвета на голубой при наведении */
+    color: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px rgba(14, 165, 233, 0.3);
+}
+
+/* Стилизация блока с фотографией */
+.hero-image-wrapper {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+/* Эффект матового изумрудного свечения позади фотографии */
+.image-glow {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 70%;
+    height: 70%;
+    background-color: #10b981;
+    filter: blur(100px); /* Сильное размытие создает эффект неонового света */
+    opacity: 0.25;
+    z-index: 1;
+    border-radius: 50%;
+}
+
+.hero-image {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 20px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+    position: relative;
+    z-index: 2; /* Фотография находится поверх свечения */
+    border: 1px solid rgba(255, 255, 255, 0.1); /* Тонкая светлая рамка для объема */
+}
+
+/* Адаптивность для мобильных экранов */
+@media (max-width: 900px) {
+    .hero-inner {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 40px;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .slogan {
+        font-size: 2.5rem;
+    }
+
+    .hero-image-wrapper {
+        margin-top: 40px;
+    }
+}
+
+/* --- Секция Преимуществ (Features) --- */
+.features {
+    padding: 100px 0;
+}
+
+/* Заголовок секции */
+.section-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-header h2 {
+    font-size: 2.5rem;
+    color: #ffffff;
+    margin-bottom: 16px;
+}
+
+.section-header .accent {
+    color: #10b981;
+}
+
+.section-header p {
+    color: #a3a3a3;
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+/* Сетка карточек (Grid автоматически адаптируется под размер экрана) */
+.features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+/* Дизайн самой карточки */
+.feature-card {
+    background-color: #1a1a1a; /* Чуть светлее, чем основной фон */
+    border: 1px solid rgba(255, 255, 255, 0.05); /* Едва заметная рамка */
+    border-radius: 16px;
+    padding: 40px 30px;
+    transition: all 0.3s ease;
+}
+
+/* Анимация при наведении на карточку */
+.feature-card:hover {
+    transform: translateY(-8px); /* Карточка слегка приподнимается */
+    border-color: rgba(16, 185, 129, 0.3); /* Рамка становится изумрудной */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Дизайн блока с иконкой */
+.feature-icon {
+    width: 60px;
+    height: 60px;
+    background-color: rgba(16, 185, 129, 0.1); /* Прозрачный изумрудный фон */
+    color: #10b981;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 24px;
+    transition: all 0.3s ease;
+}
+
+/* При наведении на карточку иконка закрашивается */
+.feature-card:hover .feature-icon {
+    background-color: #10b981;
+    color: #000000;
+}
+
+.feature-card h3 {
+    font-size: 1.25rem;
+    color: #ffffff;
+    margin-bottom: 12px;
+}
+
+.feature-card p {
+    color: #a3a3a3;
+    line-height: 1.6;
+}
+
+/* --- Подвал сайта (Footer) --- */
+.site-footer {
+    background-color: #0a0a0a; /* Практически черный цвет для контраста с основным фоном */
+    border-top: 1px solid rgba(255, 255, 255, 0.05); /* Тонкая линия разделителя */
+    padding-top: 80px;
+    margin-top: 60px;
+}
+
+/* Сетка для колонок футера */
+.footer-inner {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr; /* Первая колонка шире остальных */
+    gap: 40px;
+    margin-bottom: 60px;
+}
+
+.footer-col h3 {
+    color: #ffffff;
+    font-size: 1.2rem;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+}
+
+.footer-desc {
+    color: #a3a3a3;
+    line-height: 1.6;
+    margin-top: 16px;
+    max-width: 320px;
+}
+
+/* Сброс стилей для списков */
+.footer-links,
+.footer-contact {
+    list-style: none;
+}
+
+.footer-links li,
+.footer-contact li {
+    margin-bottom: 14px;
+    color: #a3a3a3;
+    font-size: 0.95rem;
+}
+
+/* Стилизация ссылок */
+.footer-links a {
+    color: #a3a3a3;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+/* Эффект при наведении: цвет меняется на изумрудный, ссылка немного сдвигается вправо */
+.footer-links a:hover {
+    color: #10b981;
+    transform: translateX(5px); 
+}
+
+/* Выделение заголовков в контактах */
+.footer-contact span {
+    color: #ffffff;
+    font-weight: 600;
+    margin-right: 8px;
+}
+
+/* Самая нижняя часть футера */
+.footer-bottom {
+    background-color: #050505;
+    padding: 24px 0;
+    text-align: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-bottom p {
+    color: #555555; /* Тусклый цвет, чтобы не отвлекать внимание */
+    font-size: 0.9rem;
+}
+
+/* Адаптивность для планшетов и мобильных устройств */
+@media (max-width: 768px) {
+    .footer-inner {
+        grid-template-columns: 1fr; /* Все колонки выстраиваются друг под другом */
+        text-align: center;
+        gap: 30px;
+    }
+    
+    .footer-desc {
+        margin: 16px auto 0; /* Центрируем описание на мобильных */
+    }
+
+    .footer-links a:hover {
+        transform: translateX(0); /* Отключаем сдвиг на мобильных, чтобы не ломать верстку */
+        color: #10b981;
+    }
+}
